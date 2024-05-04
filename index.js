@@ -11,6 +11,7 @@ const connectDB = require('./config/db')
 
 const Guitarra = require('./models/Guitar')
 const Usuario = require('./models/User')
+const Producto = require('./models/Product')
 
 
 
@@ -322,3 +323,24 @@ app.post("/mercadopago", async (req, res) => {
 
 // 4. SERVIDOR
 app.listen(process.env.PORT, () => console.log("El servidor está de pie"))
+
+
+
+// 3. RUTEO-2
+
+// A. PRODUCTOS
+
+app.get("/obtener-productos", async (req, res) => {
+    try {
+        const productos = await Producto.find({})
+
+        res.json({
+            productos
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            msg: "Hubo un error obteniendo los datos"
+        })
+    }
+})
