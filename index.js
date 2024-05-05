@@ -322,7 +322,7 @@ app.post("/mercadopago", async (req, res) => {
 
 
 // 4. SERVIDOR
-app.listen(process.env.PORT, () => console.log("El servidor está de pie"))
+app.listen(process.env.PORT, () => console.log("El servidor está funcionando correctamente"))
 
 
 
