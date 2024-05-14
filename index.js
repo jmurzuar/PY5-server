@@ -311,7 +311,7 @@ app.post("/mercadopago", async (req, res) => {
   
     const responseMP = await mercadopago.preferences.create(preference)
 
-    console.log(responseMP)
+    //console.log(responseMP)
 
     res.json({
         checkoutId: responseMP.body.id
