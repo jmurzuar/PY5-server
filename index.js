@@ -12,6 +12,7 @@ const connectDB = require('./config/db')
 const Guitarra = require('./models/Guitar')
 const Usuario = require('./models/User')
 const Producto = require('./models/Product')
+const Venta = require('./models/Venta')
 
 
 
@@ -63,7 +64,7 @@ app.get("/obtener-guitarra/:id", async (req, res) => {
     const { id } = req.params
 
     try {
-        
+
         const guitar = await Guitarra.findById(id)
 
         res.json({
@@ -91,8 +92,10 @@ app.post("/crear-guitarra", async (req, res) => {
 
     try {
 
-        const nuevaGuitarra = await Guitarra.create({ nombre, precio, imagen, descripcion,
-            detalles, color })
+        const nuevaGuitarra = await Guitarra.create({
+            nombre, precio, imagen, descripcion,
+            detalles, color
+        })
 
         res.json(nuevaGuitarra)
 
@@ -281,22 +284,22 @@ app.put("/usuario/actualizar", auth, async (req, res) => {
     // CAPTURAMOS USUARIO DEL FORMULARIO
     const newDataForOurUser = req.body
 
-        try {
+    try {
         // LOCALIZAMOS EL USUARIO
         const updatedUser = await Usuario.findByIdAndUpdate(
             req.user.id,
             newDataForOurUser,
             { new: true }
         ).select("-password")
-        
-        res.json(updatedUser)
-            
 
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
+        res.json(updatedUser)
+
+
+    } catch (error) {
+        console.log(error)
+        res.send(error)
     }
+}
 )
 
 
@@ -306,9 +309,8 @@ app.put("/usuario/actualizar", auth, async (req, res) => {
 
 
 app.post("/mercadopago", async (req, res) => {
-
+    
     const preference = req.body
-  
     const responseMP = await mercadopago.preferences.create(preference)
 
     //console.log(responseMP)
@@ -318,6 +320,37 @@ app.post("/mercadopago", async (req, res) => {
     });
 
 })
+
+
+app.post("/mercadopago/notificacion", async (req, res) => {
+    try {
+      // Obtener los datos de la notificación de Mercado Pago
+      const notificationData = req.body;
+  
+      // Verificar si la notificación indica que la transacción fue aprobada
+      if (notificationData && notificationData.action === 'payment.approved') {
+        // Limpiar el carrito
+        console.log('Limpiar el carrito')
+        limpiarCarrito();
+  
+        // Enviar respuesta exitosa a Mercado Pago
+        res.sendStatus(200);
+      } else {
+        // Enviar respuesta no válida a Mercado Pago en caso de que la notificación no sea válida
+        res.sendStatus(400);
+      }
+    } catch (error) {
+      console.error('Error al procesar la notificación de Mercado Pago:', error);
+      res.status(500).json({ error: 'Error al procesar la notificación' });
+    }
+  });
+  
+  // Función para limpiar el carrito
+  function limpiarCarrito() {
+    // Aquí va la lógica para limpiar el carrito, por ejemplo:
+    carrito = [];
+  }
+  
 
 
 
@@ -343,4 +376,50 @@ app.get("/obtener-productos", async (req, res) => {
             msg: "Hubo un error obteniendo los datos"
         })
     }
+})
+
+
+app.get('/obtener-ventas', async (req, res) => {
+    const { email } = req.query;
+
+    try {
+        const ventas = await Venta.find({ usuario: email });
+        res.json({ ventas });
+        
+
+    } catch (error) {
+
+        res.status(500).json({ msg: "Hubo un error obteniendo los datos", error });
+    }
+});
+
+app.post('/crear-ventas', async (req, res) => {
+    const { usuario, monto, payment_id, merchant_order_id } = req.body;
+    try {
+        const nuevaVenta = await Venta.create({ usuario, monto, payment_id, merchant_order_id  });
+        res.json(nuevaVenta);
+    } catch (error) {
+        res.status(500).json({ msg: "Hubo un error creando la venta", error });
+    }
+});
+
+app.get("/obtener-ventas/:id", async (req, res) => {
+
+    const { id } = req.params
+
+    try {
+
+        const venta = await Venta.findById(id)
+
+        res.json({
+            venta
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            msg: "Hubo un error obteniendo los datos"
+        })
+    }
+
+
 })
