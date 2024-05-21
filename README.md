@@ -7,10 +7,11 @@
 * [1. Intro](#1-intro)
 * [2. Estructura de la página](#2-Estructura)
 * [3. Pantallas](#3-Pantallas)
-* [4. Tecnologías Utilizadas](#4-Tecnologías-Utilizadas)
-* [5. Principales Características](#5-Principales-Características)
-* [6. Legal](#6-Legal)
-* [7. Despliegue](#7-Despliegue)
+* [4. Pantallas Mercado Pago](#4-Pantallas-Mercado-Pago)
+* [5. Tecnologías Utilizadas](#5-Tecnologías-Utilizadas)
+* [6. Principales Características](#6-Principales-Características)
+* [7. Legal](#7-Legal)
+* [8. Despliegue](#8-Despliegue)
   
 ****
 
@@ -100,7 +101,33 @@ BASE DE DATOS
 [volver al índice](#ÍNDICE)
 ****
 
-## 4. Tecnologías Utilizadas
+## 4. Pantallas Mercado Pago
+
+### Seleccionar medio de pago
+![Esquema1](https://github.com/jmurzuar/PY5-client/blob/master/public/mp01.PNG)
+
+### Ingresar tarjeta
+![Esquema1](https://github.com/jmurzuar/PY5-client/blob/master/public/mp02.PNG)
+
+### Ingresar número documento titular
+![Esquema1](https://github.com/jmurzuar/PY5-client/blob/master/public/mp03.PNG)
+
+### Seleccionar número de cuotas
+![Esquema1](https://github.com/jmurzuar/PY5-client/blob/master/public/mp04.PNG)
+
+### Confirmar datos de compra
+![Esquema1](https://github.com/jmurzuar/PY5-client/blob/master/public/mp05.PNG)
+
+### Pantalla de pago realizado
+![Esquema1](https://github.com/jmurzuar/PY5-client/blob/master/public/mp06.PNG)
+
+### Pantalla de direccionamiento pago exitoso
+![Esquema1](https://github.com/jmurzuar/PY5-client/blob/master/public/mp07.PNG)
+
+[volver al índice](#ÍNDICE)
+****
+
+## 5. Tecnologías Utilizadas
 
 ![LogosPY2](https://github.com/jmurzuar/PY5-client/blob/master/public/tecnologias.png)
 
@@ -110,7 +137,7 @@ El objetivo principal de este proyecto fue desarrollar una aplicación con REACT
 [volver al índice](#ÍNDICE)
 ****
 
-## 5. Principales Características
+## 6. Principales Características
 
 En el desarollo de este proyecto, se cumple con:
 
@@ -141,7 +168,7 @@ En el desarollo de este proyecto, se cumple con:
 [volver al índice](#ÍNDICE)
 ****
 
-## 6. Legal
+## 7. Legal
 
 - Esta página fue creada con fines educativos, NO COMERCIAL, contiene imagenes con derechos de autor que se han utilizado solo para ejemplos
 - Página creada en el marco del Bootcamp desarrollo web full stack, corte 11 de la Universidad de Desarrrollo - Chile
@@ -150,7 +177,7 @@ En el desarollo de este proyecto, se cumple con:
 [volver al índice](#ÍNDICE)
 ****
 
-## 7. Despliegue
+## 8. Despliegue
 
 Link al proyecto publicado en VERCEL (https://py-5-client.vercel.app/)
 
