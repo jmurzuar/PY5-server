@@ -1,6 +1,6 @@
 ![Esquema1](https://github.com/jmurzuar/PY5-client/blob/master/public/banner.png)
 
-# PROYECTO 5: Aplicación de Comercio Electrónico
+# PROYECTO 5: Aplicación de Comercio Electrónico (SERVER)
 
 ## **ÍNDICE**
 
